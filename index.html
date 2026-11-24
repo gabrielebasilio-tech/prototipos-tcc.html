@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duas ideias de TCC</title>
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body {
+      margin: 0;
+      background: #eff1f6;
+      color: #202438;
+      font: 16px/1.5 system-ui, sans-serif;
+    }
+    main { max-width: 1080px; margin: auto; padding: 24px 16px; }
+    h1, h2, h3, p { margin: 0 0 10px; }
+    h1 { font-size: 1.45rem; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 3px solid var(--destaque, #5542aa); outline-offset: 4px; }
+
+    .topo {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+    }
+    .rotulo {
+      font-size: .76rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .seletor {
+      display: flex; flex-wrap: wrap; gap: 4px;
+      border: 1px solid #dde0ea; background: white;
+      border-radius: 14px; padding: 4px;
+    }
+    .seletor button {
+      border: 0; border-radius: 10px; padding: 9px 14px;
+      color: #202438; background: transparent; font-weight: 700;
+    }
+    .seletor button[aria-pressed="true"] { background: #202438; color: white; }
+
+    .f1 {
+      --fundo: #10131c; --cartao: #1b202c; --texto: #f7f8fc;
+      --suave: #c5ccda; --borda: #394152; --destaque: #ff626b;
+      --no-botao: #260b12; --banner: linear-gradient(120deg, #171c2a, #431d2c);
+    }
+    .pele {
+      --fundo: #fff8ef; --cartao: #fffcf8; --texto: #2c1e3b;
+      --suave: #5f4d69; --borda: #decee7; --destaque: #6338a6;
+      --no-botao: white; --banner: linear-gradient(120deg, #f4e9ff, #ffece2);
+    }
+    .app {
+      border-radius: 24px; overflow: hidden;
+      color: var(--texto); background: var(--fundo);
+      box-shadow: 0 12px 36px #20243818;
+    }
+    .hero {
+      display: grid; grid-template-columns: 1.25fr 1fr; align-items: center;
+      gap: 24px; padding: clamp(22px, 5vw, 52px); background: var(--banner);
+    }
+    .hero h2 { font-size: clamp(2.6rem, 8vw, 5rem); line-height: 1; letter-spacing: -.055em; }
+    .hero p:not(.rotulo) { max-width: 39ch; margin-bottom: 18px; }
+    .hero .rotulo { color: var(--destaque); }
+    .arte { width: min(100%, 320px); max-height: 175px; justify-self: center; }
+    .conteudo { padding: clamp(16px, 3vw, 30px); }
+    .grade { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .trio { grid-template-columns: repeat(3, 1fr); }
+    .cartao {
+      padding: 18px; background: var(--cartao);
+      border: 1px solid var(--borda); border-radius: 16px;
+    }
+    .cartao p, .nota { color: var(--suave); }
+    .cartao .rotulo { color: var(--destaque); }
+    .abaixo { margin-top: 14px; }
+    .nota { display: block; font-size: .84rem; margin: 14px 0 0; }
+    .botao {
+      border: 1px solid transparent; border-radius: 10px; padding: 9px 13px;
+      font-weight: 750; background: var(--destaque); color: var(--no-botao);
+    }
+    .botao.secundario { background: transparent; border-color: var(--borda); color: var(--texto); }
+    .trio .cartao { display: flex; flex-direction: column; align-items: flex-start; }
+    .trio .botao { margin-top: auto; }
+    details { border-top: 1px solid var(--borda); margin-top: 14px; padding-top: 12px; }
+    details p { margin-top: 10px; }
+    summary { cursor: pointer; font-weight: 700; }
+    .ranking { margin: 0; padding-left: 24px; }
+    .ranking li { padding: 6px 0; }
+    .ranking div { display: flex; justify-content: space-between; gap: 10px; }
+    .comentario {
+      border-left: 3px solid var(--destaque); padding-left: 12px;
+      margin: 12px 0; overflow-wrap: anywhere;
+    }
+    .comentario p { margin-bottom: 0; }
+    .linha { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+    input {
+      flex: 1 1 200px; min-width: 0; padding: 9px 12px; border-radius: 10px;
+      border: 1px solid var(--borda); background: var(--fundo); color: var(--texto);
+    }
+    input::placeholder { color: var(--suave); }
+    #status-clinica:not(:empty) { margin-top: 10px; font-weight: 700; }
+
+    @media (max-width: 680px) {
+      .hero, .grade, .trio { grid-template-columns: 1fr; }
+      .arte { max-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header class="topo">
+    <div>
+      <p class="rotulo">Desenvolvimento de Sistemas</p>
+      <h1>Duas ideias de TCC</h1>
+    </div>
+    <nav class="seletor" aria-label="Escolher protótipo">
+      <button type="button" aria-controls="guia" aria-pressed="true">🏁 Guia F1</button>
+      <button type="button" aria-controls="dermatites" aria-pressed="false">💜 Dermatites</button>
+    </nav>
+  </header>
+
+  <section id="guia" class="app f1" aria-labelledby="titulo-guia">
+    <header class="hero">
+      <div>
+        <p class="rotulo">01 · Ponto de encontro dos fãs</p>
+        <h2 id="titulo-guia">Guia F1</h2>
+        <p>Descubra a hora da largada, acompanhe os pilotos e encontre gente pra torcer junto.</p>
+        <button class="botao" type="button" data-abrir
+                aria-controls="mural" aria-expanded="false">Ir pro mural do GP →</button>
+      </div>
+      <svg class="arte" viewBox="0 0 300 170" aria-hidden="true">
+        <rect x="4" y="4" width="292" height="162" rx="24" fill="#15151f" stroke="#67404d"/>
+        <path d="M37 120 L64 78 Q73 65 88 69 L130 79 Q141 81 150 71
+                 L185 37 Q195 27 210 33 L253 51 Q269 58 262 74
+                 L240 116 Q233 130 215 130 H176 Q166 130 157 137
+                 L144 147 Q133 154 117 150 L50 134 Q32 130 37 120 Z"
+              fill="none" stroke="#ff626b" stroke-width="7" stroke-linejoin="round"/>
+        <circle cx="64" cy="78" r="6" fill="white"/>
+        <path d="M182 148 H239 M196 154 H253" stroke="#744753" stroke-width="2"/>
+      </svg>
+    </header>
+
+    <div class="conteudo">
+      <div class="grade">
+        <article class="cartao">
+          <p class="rotulo">Próximo GP · Exemplo</p>
+          <h3>GP de São Paulo</h3>
+          <p>Interlagos · Domingo, 14h (Brasília)</p>
+          <details>
+            <summary>Ver programação</summary>
+            <ul>
+              <li>Sexta, 12h — Treino livre</li>
+              <li>Sábado, 15h — Classificação</li>
+              <li>Domingo, 14h — Corrida</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="cartao">
+          <p class="rotulo">Temporada · Dados de exemplo</p>
+          <h3>Classificação dos pilotos</h3>
+          <ol class="ranking">
+            <li><div><span>L. Norris</span><strong>205 pts</strong></div></li>
+            <li><div><span>C. Leclerc</span><strong>192 pts</strong></div></li>
+            <li><div><span>M. Verstappen</span><strong>173 pts</strong></div></li>
+          </ol>
+        </article>
+      </div>
+
+      <section id="mural" class="cartao abaixo" hidden>
+        <p class="rotulo">Comunidade · GP de São Paulo</p>
+        <h3 tabindex="-1">Mural da corrida</h3>
+        <div id="comentarios" role="log" aria-label="Comentários do mural">
+          <div class="comentario">
+            <strong>@bia_no_grid</strong>
+            <p>Primeiro GP que vou acompanhar do começo ao fim. Quem mais vai ver?</p>
+          </div>
+          <div class="comentario">
+            <strong>@lu_paddock</strong>
+            <p>Eu! Bora comentar aqui na hora da corrida?</p>
+          </div>
+        </div>
+        <form id="form-mural">
+          <label for="mensagem">Seu comentário de teste</label>
+          <div class="linha">
+            <input id="mensagem" maxlength="180" required autocomplete="off"
+                   placeholder="Ex.: Quem vocês acham que vai pro pódio?">
+            <button class="botao" type="submit">Publicar</button>
+          </div>
+        </form>
+        <small class="nota">O comentário só aparece pra você e some ao recarregar a página.</small>
+      </section>
+      <p class="nota">Protótipo de fã, não oficial. Horários, pontuações e conversas são exemplos.</p>
+    </div>
+  </section>
+
+  <section id="dermatites" class="app pele" aria-labelledby="titulo-pele" hidden>
+    <header class="hero">
+      <div>
+        <p class="rotulo">02 · Guia para pacientes e famílias</p>
+        <h2 id="titulo-pele">Dermatites</h2>
+        <p>Sobre dermatite atópica: entenda a condição, encontre apoio ou descubra com quem confirmar o próximo passo.</p>
+      </div>
+      <svg class="arte" viewBox="0 0 300 170" aria-hidden="true">
+        <rect x="4" y="4" width="292" height="162" rx="24" fill="#fff8f3" stroke="#decee7"/>
+        <circle cx="150" cy="85" r="65" fill="#ecdefb"/>
+        <path d="M38 121 C87 149 84 58 137 85 S208 135 260 49"
+              fill="none" stroke="#976fc8" stroke-width="3" stroke-dasharray="5 7"/>
+        <circle cx="38" cy="121" r="7" fill="#976fc8"/>
+        <circle cx="260" cy="49" r="7" fill="#6338a6"/>
+        <rect x="109" y="47" width="82" height="77" rx="22" fill="#fffdfb"/>
+        <path d="M150 104 C145 99 126 87 126 75 C126 62 143 59 150 71
+                 C157 59 174 62 174 75 C174 87 155 99 150 104 Z" fill="#6338a6"/>
+      </svg>
+    </header>
+
+    <div class="conteudo">
+      <h3>Do que você precisa hoje?</h3>
+      <div class="grade trio">
+        <article class="cartao">
+          <p class="rotulo">01 · Informação</p>
+          <h3>Entender a dermatite</h3>
+          <p>Uma explicação simples pra quem tem a condição ou quer apoiar alguém.</p>
+          <button class="botao secundario" type="button" data-abrir
+                  aria-controls="familia" aria-expanded="false">Começar por aqui →</button>
+        </article>
+        <article class="cartao">
+          <p class="rotulo">02 · Medicamento e aplicação</p>
+          <h3>Já tenho indicação médica</h3>
+          <p>Saiba com quem confirmar o acesso ao medicamento e onde ele pode ser aplicado, se for o caso.</p>
+          <button class="botao" type="button" data-abrir
+                  aria-controls="medicamento" aria-expanded="false">Ver próximos passos →</button>
+        </article>
+        <article class="cartao">
+          <p class="rotulo">03 · Rede de apoio</p>
+          <h3>Encontrar apoio</h3>
+          <p>Por onde começar a procurar atendimento em dermatologia ou psicologia.</p>
+          <button class="botao secundario" type="button" data-abrir
+                  aria-controls="apoio" aria-expanded="false">Ver orientações →</button>
+        </article>
+      </div>
+
+      <section id="familia" class="cartao abaixo" data-resposta hidden>
+        <h3 tabindex="-1">Entendendo a dermatite atópica</h3>
+        <p>É uma condição da pele que pode causar ressecamento e coceira. Não é contagiosa.</p>
+        <p>Se você quer apoiar alguém, comece perguntando o que mais incomoda no dia a dia e como a pessoa gostaria de receber ajuda.</p>
+      </section>
+
+      <section id="medicamento" class="cartao abaixo" data-resposta hidden>
+        <h3 tabindex="-1">Com quem eu confirmo o próximo passo?</h3>
+        <p>Com a indicação em mãos, pergunte à equipe que te acompanha como confirmar o acesso ao medicamento e se a aplicação precisa acontecer em uma clínica.</p>
+        <details>
+          <summary>Ver ficha de uma clínica fictícia</summary>
+          <p><strong>Clínica Exemplo · Ficha de demonstração</strong></p>
+          <p>Antes de ir a um serviço real, você pode perguntar: “Preciso agendar?” e “O que preciso levar?”</p>
+          <button id="simular" class="botao" type="button">Simular contato</button>
+          <p id="status-clinica" role="status"></p>
+        </details>
+      </section>
+
+      <section id="apoio" class="cartao abaixo" data-resposta hidden>
+        <h3 tabindex="-1">Onde posso buscar apoio?</h3>
+        <p>Pergunte à sua unidade de saúde ou à equipe que te acompanha quais serviços de dermatologia ou psicologia atendem na sua região.</p>
+      </section>
+
+      <p class="nota">Protótipo escolar. Não marca consultas, não envia pedidos e não coleta dados de saúde.</p>
+    </div>
+  </section>
+</main>
+
+<script>
+  const abas = document.querySelectorAll(".seletor button");
+  const alvoDe = botao => document.getElementById(botao.getAttribute("aria-controls"));
+
+  // Alterna entre os dois protótipos.
+  abas.forEach(aba => {
+    aba.addEventListener("click", () => {
+      abas.forEach(item => {
+        const ativo = item === aba;
+        item.setAttribute("aria-pressed", String(ativo));
+        alvoDe(item).hidden = !ativo;
+      });
+    });
+  });
+
+  // Abre o mural ou o caminho escolhido no guia de dermatite.
+  const botoes = document.querySelectorAll("[data-abrir]");
+  botoes.forEach(botao => {
+    botao.addEventListener("click", () => {
+      const painel = alvoDe(botao);
+      if (painel.hasAttribute("data-resposta")) {
+        document.querySelectorAll("[data-resposta]").forEach(item => {
+          item.hidden = item !== painel;
+        });
+      }
+      painel.hidden = false;
+      botoes.forEach(item => {
+        item.setAttribute("aria-expanded", String(!alvoDe(item).hidden));
+      });
+      painel.querySelector("h3").focus();
+    });
+  });
+
+  // Adiciona o comentário só na página, sem usar servidor.
+  document.getElementById("form-mural").addEventListener("submit", evento => {
+    evento.preventDefault();
+    const campo = document.getElementById("mensagem");
+    const texto = campo.value.trim();
+    if (!texto) { campo.focus(); return; }
+
+    const comentario = document.createElement("div");
+    comentario.className = "comentario";
+    const autor = document.createElement("strong");
+    autor.textContent = "@voce";
+    const mensagem = document.createElement("p");
+    mensagem.textContent = texto;
+    comentario.append(autor, mensagem);
+    document.getElementById("comentarios").append(comentario);
+    campo.value = "";
+    campo.focus();
+  });
+
+  document.getElementById("simular").addEventListener("click", () => {
+    document.getElementById("status-clinica").textContent =
+      "Simulação concluída. Nenhuma mensagem foi enviada.";
+  });
+</script>
+</body>
+</html>
